@@ -1,0 +1,11 @@
+.godot/
+*.zip
+*.log
+reports/
+evidence/
+workers/
+attack_authoring/
+gait_authoring/
+asset_research/
+.DS_Store
+Thumbs.db

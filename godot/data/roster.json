@@ -1,0 +1,54 @@
+[
+  {
+    "id": "walker_01_policeman",
+    "key": "walker_01_policeman"
+  },
+  {
+    "id": "walker_02_doctor",
+    "key": "walker_02_doctor"
+  },
+  {
+    "id": "walker_05_civilian",
+    "key": "zombie"
+  },
+  {
+    "id": "vn_zombie_12_xiec_lua",
+    "key": "vn_zombie_12_xiec_lua"
+  },
+  {
+    "id": "vn_zombie_13_ba_di_cho",
+    "key": "vn_zombie_13_ba_di_cho"
+  },
+  {
+    "id": "vn_zombie_14_bao_ve",
+    "key": "vn_zombie_14_bao_ve"
+  },
+  {
+    "id": "vn_zombie_15_tiktoker",
+    "key": "vn_zombie_15_tiktoker"
+  },
+  {
+    "id": "vn_zombie_16_sua_xe",
+    "key": "vn_zombie_16_sua_xe"
+  },
+  {
+    "id": "vn_zombie_17_duong_sinh",
+    "key": "vn_zombie_17_duong_sinh"
+  },
+  {
+    "id": "vn_zombie_18_nuoc_mia",
+    "key": "vn_zombie_18_nuoc_mia"
+  },
+  {
+    "id": "vn_zombie_19_dan_bar",
+    "key": "vn_zombie_19_dan_bar"
+  },
+  {
+    "id": "vn_zombie_20_tho_ho",
+    "key": "vn_zombie_20_tho_ho"
+  },
+  {
+    "id": "vn_zombie_21_phuot_thu",
+    "key": "vn_zombie_21_phuot_thu"
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "pistol": {
+    "source_gun": "DJMaesen low-poly pistol",
+    "source_character": "ImageParSeconde supplied FPS arms",
+    "source_page": "https://opengameart.org/content/animated-pistol",
+    "license": "CC-BY 4.0",
+    "muzzle_godot": [
+      0.19010309875011444,
+      -0.07503726333379745,
+      -0.5834038853645325
+    ],
+    "ads_offset_godot": [
+      -0.18795255571603775,
+      0.0534294992685318,
+      0
+    ],
+    "clips_source": {
+      "idle": 1.3333333333333333,
+      "fire": 1.1500001271565756,
+      "reload": 2.9833335876464844
+    },
+    "scope": "Source geometry, skinning and actions retained; coordinate frame and materials adapted; native gameplay review still required"
+  },
+  "ak": {
+    "source_gun": "OpenGameArt AK-47",
+    "source_page": "https://opengameart.org/content/ak-47-1",
+    "license": "CC0",
+    "muzzle_godot": [
+      0.14000003039836884,
+      -0.10183999687433243,
+      -0.8499299883842468
+    ],
+    "ads_offset_godot": [
+      -0.14,
+      0.038,
+      0
+    ],
+    "scope": "Actual AK source geometry normalized; missing wood images replaced with attributed maps; authored left-hand approach, rock-and-lock extraction and reinsertion, recovery. Right hand/fire derived from existing FPS rig."
+  },
+  "m4": {
+    "source_gun": "M4A1 by 3dmodelscc0",
+    "source_page": "https://opengameart.org/content/m4a1-assault-rifle",
+    "license": "CC0",
+    "source_character": "Quaternius Hoodie Character",
+    "muzzle_godot": [
+      0.13924144208431244,
+      -0.1119999960064888,
+      -0.885867714881897
+    ],
+    "ads_offset_godot": [
+      -0.13924,
+      0.048,
+      0
+    ],
+    "clips_authored": [
+      "idle",
+      "fire",
+      "reload"
+    ],
+    "scope": "Existing right-hand/fire actions; source-specific left-hand reach, magazine extraction/reinsertion and recovery authored for this candidate; not animation supplied by the M4 model",
+    "review_status": "NATIVE_GRIP_RELOAD_REVIEW_PENDING"
+  },
+  "shotgun": {
+    "source_gun": "ValeGoG shotgun",
+    "source_page": "https://opengameart.org/content/animated-shotgun",
+    "license": "CC-BY 4.0",
+    "muzzle_godot": [
+      0.18384981155395508,
+      -0.1416015326976776,
+      -0.9905626773834229
+    ],
+    "ads_offset_godot": [
+      -0.1846468672156334,
+      0.12465797364711761,
+      0
+    ],
+    "scope": "Source geometry, weights, shells and mechanism actions retained; textures and coordinate frame adapted. No manufacturer claim."
+  }
+}
