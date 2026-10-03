@@ -6,6 +6,12 @@ func frames(count: int) -> void:
     for i in range(count): await physics_frame
 func check(value: bool, message: String) -> void:
     if not value: failures.append(message)
+func remaining_path_length(enemy: Node3D) -> float:
+    var path := NavigationServer3D.map_get_path(game.get_world_3d().navigation_map,enemy.global_position,game.player.global_position,true)
+    check(path.size()>=2,"Pursuit must retain a connected navigation path")
+    var distance := 0.0
+    for i in range(1,path.size()): distance += path[i-1].distance_to(path[i])
+    return distance
 func _run() -> void:
     game = load("res://FPS.tscn").instantiate()
     root.add_child(game)
@@ -26,10 +32,12 @@ func _run() -> void:
             print("SPAWN_PATH ", enemy.global_position, " player=",game.player.global_position," closest=",NavigationServer3D.map_get_closest_point(game.get_world_3d().navigation_map,game.player.global_position)," path=",path)
             check(path.size() >= 2 and path[-1].distance_to(game.player.global_position) < 1.0, "Every spawn must reach the player")
         var enemy: Node3D = game.enemies[0]
-        var initial: float = enemy.global_position.distance_to(game.player.global_position)
+        var initial := remaining_path_length(enemy)
+        var start: Vector3 = enemy.global_position
         await frames(120)
         print("PURSUIT ",enemy.global_position," vel=",enemy.velocity," next=",enemy.agent.get_next_path_position()," index=",enemy.agent.get_current_navigation_path_index()," initial=",initial)
-        check(enemy.global_position.distance_to(game.player.global_position) < initial - 1,"Zombie must physically pursue, not only have a path")
+        # Going around a corner can increase straight-line distance while advancing.
+        check(enemy.global_position.distance_to(start)>1 and remaining_path_length(enemy)<initial-1,"Zombie must physically advance along its navigation path")
         enemy.global_position = game.player.global_position+Vector3(0,0,-6)
         await frames(2)
         game.player.camera.look_at(enemy.global_position + Vector3.UP * 1.05)

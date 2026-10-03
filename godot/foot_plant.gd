@@ -49,6 +49,12 @@ func _process_modification() -> void:
         var pose := skeleton.get_bone_global_pose(pelvis)
         pose.origin.y -= .075
         skeleton.set_bone_global_pose(pelvis,pose)
+        # Carry-preserving source idles can be static. Breathe above the planted feet
+        # without moving the actor, replacing its assets, or breaking hand/tool grips.
+        var chest := skeleton.find_bone("spine_03")
+        var chest_pose := skeleton.get_bone_global_pose(chest)
+        chest_pose.basis *= Basis(Vector3.RIGHT,sin(actor.animation_clock*TAU/2.4)*.07)
+        skeleton.set_bone_global_pose(chest,chest_pose)
     for foot in feet:
         var enabled: bool = actor.is_on_floor() and (standing or walking)
         foot.solver.influence = 1.0 if enabled else 0.0

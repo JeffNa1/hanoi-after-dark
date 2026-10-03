@@ -1,4 +1,6 @@
 extends CharacterBody3D
+const WALK_SPEED := 1.35
+const RUN_SPEED := 2.7
 var game: Node
 var model_key := "zombie"
 var health := 80.0
@@ -11,6 +13,7 @@ var attack_target := Vector3.ZERO
 var attack_applied := false
 var flinch := 0.0
 var corpse_time := 0.0
+var animation_clock := 0.0
 
 func _ready() -> void:
     collision_layer = 4
@@ -67,9 +70,13 @@ func take_damage(amount: float) -> void:
     else:
         flinch = .28
         attack_time = -1
-        animator.play("hit", .06, 3.3)
+        # Imported reactions have different lengths; finish within the gameplay flinch.
+        animator.play("hit", .04, animator.get_animation("hit").length / flinch)
+        # play() resumes an already-playing clip; a new impact needs a new reaction.
+        animator.seek(0,true)
 
 func _physics_process(delta: float) -> void:
+    animation_clock += delta
     if dead:
         corpse_time += delta
         if corpse_time > 7: queue_free()
@@ -113,8 +120,11 @@ func _physics_process(delta: float) -> void:
             var direction := agent.get_next_path_position() - global_position
             direction.y = 0
             direction = direction.normalized()
-            velocity.x = direction.x * 1.35
-            velocity.z = direction.z * 1.35
+            # Keep the original walk pace; sprint pursuit makes the run clip reachable.
+            var target_speed := Vector2(game.player.velocity.x,game.player.velocity.z).length()
+            var speed := RUN_SPEED if target_speed>4.5 and offset.length()>4 else WALK_SPEED
+            velocity.x = direction.x * speed
+            velocity.z = direction.z * speed
             rotation.y = lerp_angle(rotation.y, atan2(direction.x,direction.z), minf(1,delta*8))
     var before_move := global_position
     move_and_slide()
@@ -122,8 +132,9 @@ func _physics_process(delta: float) -> void:
         var moved := global_position - before_move
         var actual_speed := Vector2(moved.x, moved.z).length() / delta
         if actual_speed > .02:
-            play("walk")
+            var clip := "run" if actual_speed>2.0 else "walk"
+            play(clip)
             # The authored walk travels 1.08m per 1.2s cycle at native speed.
-            animator.speed_scale = actual_speed / .9
+            animator.speed_scale = actual_speed / (RUN_SPEED if clip=="run" else .9)
         else:
             play("idle")

@@ -18,6 +18,8 @@ Between waves, the game grants up to 20 health and two magazines of reserve ammu
 
 The roster contains all 13 approved source characters. Ten carry character-specific authored weapon or free-hand attacks. Three retain their unarmed attack. All models share the existing pursuit and damage rules.
 
+Enemies visibly idle, walk, run, attack, flinch and collapse. They keep the original walking pace, but run after a sprinting player more than four metres away. They return to walking when that sprint ends. Hit reactions restart on each impact; corpses keep their final pose until cleanup. `PUBLIC_CHECKS.md` documents the diagnosis and a native regression that checks rendered pose changes during gameplay.
+
 ## Presentation and assets
 
 Recorded firearm audio is retained. New licensed recordings add positional zombie warnings, injury and death voices, stone footsteps, crowbar movement and a quiet looping horror bed. Audio voices and debris bursts use fixed pools. A small camera roll and world muzzle light complement the gun animations and hit markers.
